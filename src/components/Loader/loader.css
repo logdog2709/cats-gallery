@@ -1,0 +1,38 @@
+.loader {
+  border-radius: 50%;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+.loader.xs {
+  border: 3px solid #bbb;
+  border-top: 3px solid #414141;
+  width: 12px;
+  height: 12px;
+}
+
+.loader.m {
+  border: 8px solid #bbb;
+  border-top: 8px solid #414141;
+  width: 30px;
+  height: 30px;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

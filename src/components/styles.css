@@ -1,0 +1,138 @@
+.branding {
+  font-weight: 900;
+  font-size: 50px;
+  color: #fff;
+}
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #353535;
+  font-size: 3rem;
+  color: #fff;
+  box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem,
+    rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
+  height: 100%;
+  width: 100%;
+  border-radius: 4px;
+  transition: all 500ms;
+  overflow: hidden;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.card:hover {
+  box-shadow: rgba(2, 8, 20, 0.1) 0px 0.35em 1.175em,
+    rgba(2, 8, 20, 0.08) 0px 0.175em 0.5em;
+  transform: translateY(-3px) scale(1.02);
+}
+
+.card .vote-icons {
+  position: absolute;
+  z-index: 99;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin: 0px 10px;
+  background-color: #0005;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.card .favorite {
+  position: absolute;
+  z-index: 99;
+  top: 10px;
+  right: 0px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: #0005;
+  border-radius: 30px;
+  height: 34px;
+  width: 34px;
+  /* padding: 5px; */
+}
+
+.card .icon {
+  font-size: 26px;
+  cursor: pointer;
+}
+
+.card .icon.active {
+  color: #fff;
+}
+.card .icon.inactive {
+  color: #fff6;
+}
+
+.favorite .filled {
+  color: red;
+}
+
+.favorite .outline {
+  color: #ddd;
+}
+
+.text-bold-light {
+  font-weight: 900;
+  color: #fffc;
+  font-size: 18px;
+}
+
+.button-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  font-family: -apple-system, BlinkMacSystemFont, "Roboto", sans-serif;
+  border-radius: 6px;
+  color: #3d3d3d;
+  background: #fff;
+  border: none;
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  cursor: pointer;
+  width: 100px;
+}
+
+.button-1:hover {
+  box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1),
+    0px 0px 0px 3.5px rgba(58, 108, 217, 0.5);
+  outline: 0;
+  background: #eee;
+}
+
+.upload-container {
+  position: fixed;
+  top: 20px;
+}
+
+.upload-button {
+  cursor: pointer;
+  border: 1px solid #fff8;
+  border-radius: 20px;
+  padding: 6px 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 110px;
+}
+.upload-button:hover {
+  background-color: #fff1;
+}
+
+.bg-inactive {
+  opacity: 0.5;
+}
