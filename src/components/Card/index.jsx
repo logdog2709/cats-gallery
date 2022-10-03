@@ -4,14 +4,7 @@ import FavoriteIcon from "../Icons/FavoriteIcon";
 import UpvoteIcon from "../Icons/UpvoteIcon";
 import DownvoteIcon from "../Icons/DownvoteIcon";
 
-import favouriteActions from "../../redux/actions/favourite";
-
-import snackbarOptions from "../../constants/snackbar";
-import { useSnackbar } from "react-simple-snackbar";
-
-export default function Card({ isFavorite, url, subId, imageId }) {
-  const [openSnackbar] = useSnackbar(snackbarOptions.error);
-
+export default function Card({ isFavorite, url, onFavoriteClick }) {
   const [favorite, setFavorite] = React.useState(isFavorite);
   const [upvoted, setUpvoted] = React.useState(false);
   const [downvoted, setDownvoted] = React.useState(false);
@@ -19,24 +12,10 @@ export default function Card({ isFavorite, url, subId, imageId }) {
   const [upvoteCount, setUpvoteCount] = React.useState(0);
   const [downvoteCount, setDownvoteCount] = React.useState(0);
 
-  const onFavoriteClick = async () => {
-    setFavorite(!favorite);
-    if (!favorite) {
-      const [, error] = await favouriteActions.addImageToFavourite({
-        subId: subId,
-        imageId: imageId,
-      });
-      if (error) {
-        openSnackbar(error);
-      }
-    } else {
-      const [, error] = await favouriteActions.removeImageFromFavourite({
-        imageId,
-      });
-      if (error) {
-        openSnackbar(error);
-      }
-    }
+  const _onFavoriteClick = async () => {
+    const _favourite = !favorite;
+    setFavorite(_favourite);
+    onFavoriteClick(_favourite);
   };
 
   const onUpvoteClick = () => {
@@ -77,7 +56,7 @@ export default function Card({ isFavorite, url, subId, imageId }) {
       }}
     >
       <div className="favorite mr-1">
-        <FavoriteIcon active={favorite} onClick={onFavoriteClick} />
+        <FavoriteIcon active={favorite} onClick={_onFavoriteClick} />
       </div>
 
       <div className="vote-icons">

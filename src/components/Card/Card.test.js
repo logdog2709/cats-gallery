@@ -87,7 +87,8 @@ describe("Voting", () => {
 
 describe("Favorite", () => {
   test("should toggle favorite", () => {
-    render(<Card />);
+    const onFavoriteClick = jest.fn();
+    render(<Card onFavoriteClick={onFavoriteClick} />);
     const favoriteBtn = screen.getByRole("favorite-icon");
     expect(favoriteBtn).toHaveClass("outline");
     fireEvent.click(favoriteBtn);

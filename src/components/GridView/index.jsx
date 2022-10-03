@@ -5,14 +5,35 @@ import Loader from "../Loader";
 
 import favouriteActions from "../../redux/actions/favourite";
 
-export default function GridView({ data = [], loading = false }) {
+import { withSnackbar } from "react-simple-snackbar";
+import snackbarOptions from "../../constants/snackbar";
+
+function GridView({ data = [], loading = false, openSnackbar }) {
   const [favourites, setFavourites] = useState([]);
 
   useEffect(() => {
     const _favourites = favouriteActions.getFavorites();
-
     setFavourites(_favourites);
   }, []);
+
+  const onFavoriteClick = async (favorite, subId, imageId) => {
+    if (favorite) {
+      const [, error] = await favouriteActions.addImageToFavourite({
+        subId: subId,
+        imageId: imageId,
+      });
+      if (error) {
+        openSnackbar(error);
+      }
+    } else {
+      const [, error] = await favouriteActions.removeImageFromFavourite({
+        imageId,
+      });
+      if (error) {
+        openSnackbar(error);
+      }
+    }
+  };
 
   if (loading) {
     return (
@@ -36,11 +57,12 @@ export default function GridView({ data = [], loading = false }) {
         <Card
           key={item.id}
           url={item.url}
-          imageId={item.id}
-          subId={item.sub_id}
           isFavorite={favourites.includes(item.id)}
+          onFavoriteClick={(fav) => onFavoriteClick(fav, item.sub_id, item.id)}
         />
       ))}
     </div>
   );
 }
+
+export default withSnackbar(GridView, snackbarOptions.error);
